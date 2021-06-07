@@ -363,7 +363,7 @@ TPR_FPR_TCR<-function(fit,coef_beta,beta,Iteration)
   return(TPRFPRTCR)
 }
 
-#================================================================================================
+#========================Simulation========================================================================
 Beta<-as.matrix(read.table("D:/BetaExample32m10.csv",sep=",",head=F))
 m<-nrow(Beta)
 p=lag<-10
