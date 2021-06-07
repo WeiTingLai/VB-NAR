@@ -49,13 +49,8 @@ VB_NAR<-function(Y,X=NULL,segment,lag,maxit=1e+5,tol=1e-8,phi_initial,alpha_init
   n<-nrow(Y)
   criteria<-T
   group<-c(0,rep(c(1,(m-1)),p*m))
-  #coef_beta<-matrix(0,nrow=Iteration,ncol=((p*m)*m))
-  #sigma_beta=sigma_hat<-matrix(0,nrow=N,ncol=m^2)
-  #alpha<-matrix(0,nrow=Iteration,ncol=2)
-  #iteration<-rep(0,Iteration)
   segment_eachrow<-matrix(t(as.list(lapply(1:(p*m),function(j)table(rep(1:length(segment),c(segment))[ifelse(j%%m!=0,-(j%%m),-m)])))),ncol=1)
-  #phi<-matrix(0,nrow=Iteration,ncol=length(unlist(segment_eachrow))+p*m)
-  if(verbose){
+   if(verbose){
     message("Info: Segment :",length(segment))
     message("Info: Sample of size:",ifelse(is.null(X),n,n))
     message("Info: Number of Lags:",p)
@@ -144,7 +139,7 @@ VB_NAR<-function(Y,X=NULL,segment,lag,maxit=1e+5,tol=1e-8,phi_initial,alpha_init
     {
       
       criteria<-(abs(ELBO[itera]-ELBO[itera-1])>tol) *( abs(test-mean((Y-X%*%beta_mean)^2))>tol)
-      #criteria<-(abs(ELBO[itera]-ELBO[itera-1])>tol )
+      
       
       if(criteria){cat("Iteration:", itera-1,"th","\tELBO:",ELBO[itera],"\tELBO_diff:", abs(ELBO[itera] - ELBO[itera-1]),"\ttest:", test,"\n")}else{iteration<-itera;break}
       test<-mean((Y-X%*%beta_mean)^2)
@@ -287,9 +282,7 @@ VB_NAR<-function(Y,X=NULL,segment,lag,maxit=1e+5,tol=1e-8,phi_initial,alpha_init
   
   
   coef_beta<-matrix(beta_mean,nrow=1)
-  #X1<-matrix(X1,nrow=1)
-  #Y1<-matrix(Y1,nrow=1)
-  #mpse<-c(mpse,mean((Y1-X1%*%beta_mean)^2))
+
   
   fit<-list()
   fit$Lag<-lag
