@@ -364,7 +364,7 @@ TPR_FPR_TCR<-function(fit,coef_beta,beta,Iteration)
 }
 
 #========================Simulation========================================================================
-Beta<-as.matrix(read.table("D:/BetaExample32m10.csv",sep=",",head=F))
+Beta<-as.matrix(read.table("D:/BetaCoefm10UG.csv",sep=",",head=F))
 m<-nrow(Beta)
 p=lag<-10
 Beta1<-NULL
@@ -374,7 +374,7 @@ for(i in 1:p)
 }
 
 table(beta==Beta1)
-Data<-read.table("D:/Example32m10_1_rep100.csv",sep=",",head=F)
+Data<-read.table("D:/Datam10UG_I_rep100.csv",sep=",",head=F)
 
 p=lag<-10
 
